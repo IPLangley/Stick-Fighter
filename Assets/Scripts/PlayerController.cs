@@ -102,6 +102,7 @@ public class PlayerController : MonoBehaviour
     {
         //read in if player is trying to jump
         if (Input.GetKeyDown(KeyCode.Space))
+ 
         {
             //see if player can jump
             if (grounded == true)
