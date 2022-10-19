@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class characterTemplate : MonoBehaviour
 {
@@ -11,22 +12,37 @@ public class characterTemplate : MonoBehaviour
     SpriteRenderer playerRenderer;
 
     //Descirbes which player is playing  IE (Player 1 vs Player 2);
-    int playerSlot;
+    public int playerSlot;
     //Describes player speed
     [SerializeField]
-    float movementSpeed;
+    public float movementSpeed;
     //Describes player jumpHeight
-    float jumpHeight;
+    public float jumpHeight;
     //Describes player maximum health
     [SerializeField]
-    float maxHealth;
+    public float maxHealth;
     //Describes player's current health
-    float health;
+    [SerializeField]
+    public float health;
     //horizontal player input
     [SerializeField]
     float input_x;
     //Reading if player is touching ground
-    bool grounded;
+    public bool grounded;
+    //Blocking check
+    public bool blocking;
+    //Block Damage Reduction represented as a percentage of the damage mitigated
+    public float blockAmount;
+    //Knock Back Resistance represented as a percentage of the knockback mitigated
+    public float knockbackResist;
+    //Strength of current attack
+    public float attackPower;
+    //CurrentHitbox
+    public GameObject hitBox;
+    //Animator
+    public Animator anim;
+    //MoveCheck
+    public bool canmove;
 
 
     //Ray cast for grounding
@@ -35,6 +51,10 @@ public class characterTemplate : MonoBehaviour
     //Information on what components are considered part of the "floor"
     public LayerMask floor;
 
+    //Refence to HP bar such that it can update whilst player health decreases
+    public Image hpBar;
+
+
 
 
 
@@ -42,37 +62,47 @@ public class characterTemplate : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
         //set all starting values to their initial
         //we should have all values mapped to an initial value which can change for a per character system
         //IE character 1 will have a movepseed of 5, while character 2 has a movemspeed of 6
         playerRigidBody = GetComponent<Rigidbody2D>();
         playerRenderer = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
         health = maxHealth;
         movementSpeed = 5;
         jumpHeight = 5;
+        canmove = true;
 
         //Should be set per character as well if we have different height characters
         groundedCheckLength = 1.3f;
+        hitBox.gameObject.SetActive(false);
 
         
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
-
+        hpUpdate();
         //Set the players horizontal movement
         input_x = Input.GetAxisRaw("Horizontal");
         //Move Player
-        if (input_x != 0)
+        if (input_x != 0 && canmove)
         {
+            anim.SetBool("Moving", true);
             //move the player
             move(input_x);
         }
-        else if(grounded)
+        if (grounded && input_x != 0)
         {
+            anim.SetBool("Jumping", false);
+        }
+        else if (grounded)
+        {
+            anim.SetBool("Jumping", false);
+            anim.SetBool("Moving", false);
             //stop the player if they are touching the ground
             playerRigidBody.velocity = new Vector2(0, playerRigidBody.velocity.y);
         }
@@ -81,24 +111,34 @@ public class characterTemplate : MonoBehaviour
         checkGrounding();
         //Allow the player to jump
         jump();
-
+        block();
+        //attack();
 
 
     }
 
 
     //Takes in horizontal input and moves player
-    public void move(float input)
+    protected virtual void move(float input)
     {
         //Flip sprite if moving to the right
         playerRenderer.flipX = (input < 0);
+        if(input <= 0)
+        {
+            hitBox.GetComponent<CircleCollider2D>().offset = new Vector2(-0.09f, 0.02f);
+        }
+        else
+        {
+            hitBox.GetComponent<CircleCollider2D>().offset = new Vector2(0.09f, 0.02f);
+        }
         //Move player respective to input by movement speed
         playerRigidBody.velocity = new Vector2(input * movementSpeed, playerRigidBody.velocity.y);
+        
     }
 
 
     //Makes player jump
-    public void jump()
+    protected virtual void jump()
     {
         //read in if player is trying to jump
         if (Input.GetKeyDown(KeyCode.Space))
@@ -107,6 +147,7 @@ public class characterTemplate : MonoBehaviour
             //see if player can jump
             if (grounded == true)
             {
+                anim.SetBool("Jumping", true);
                 //add velocity to player based on their jumpheight
                 playerRigidBody.velocity = playerRigidBody.velocity + Vector2.up * jumpHeight;
                 //set player unable to jump
@@ -117,7 +158,7 @@ public class characterTemplate : MonoBehaviour
 
     }
 
-    public void checkGrounding()
+    protected virtual void checkGrounding()
     {
         //Check for grounding
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, groundedCheckLength, floor);
@@ -134,24 +175,71 @@ public class characterTemplate : MonoBehaviour
     }
     
 
-    public void attack()
+    public virtual void attack(float amnt)
     {
+     
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
+            canmove = false;
+            attackPower = amnt;
+            startAttack();
             //attack
             Debug.Log("ATTACK");
+            Invoke("resetAttack", 0.4f);
+
         }
+        //attackPower = 0;
     }
 
-    public void block()
+    public virtual void block()
     {
+        //See if the player is inputing
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
+            //Set blocking to true
+            blocking = true;
             //block
             Debug.Log("BLOCK");
         }
+        //Set blocking to false at the end of block
+        blocking = false;
     }
 
+
+
+    public void damage(float amnt)
+    {
+        if (blocking)
+        {
+            amnt *= blockAmount;
+        }
+        health -= amnt;
+    }
+
+    public void knockBack(float amnt)
+    {
+        if (blocking)
+        {
+            amnt *= knockbackResist;
+        }
+        playerRigidBody.velocity = new Vector2(amnt, 0);
+    }
+
+    public void hpUpdate()
+    {
+        hpBar.fillAmount = health / maxHealth;
+    }
+    public void resetAttack()
+    {
+        hitBox.SetActive(false);
+        anim.SetBool("Attack_Basic", false);
+        canmove = true;
+    }
+    public void startAttack()
+    {
+        hitBox.SetActive(true);
+        anim.SetBool("Attack_Basic", true);
+    }
 }
 
 
