@@ -5,13 +5,11 @@ using UnityEngine.UI;
 
 public class characterTemplate : MonoBehaviour
 {
-
-    
     //Reference to the player's rigid body component
     Rigidbody2D playerRigidBody;
     SpriteRenderer playerRenderer;
 
-    //Descirbes which player is playing  IE (Player 1 vs Player 2);
+    //Describes which player is playing  IE (Player 1 vs Player 2);
     public int playerSlot;
     //Describes player speed
     [SerializeField]
@@ -53,13 +51,6 @@ public class characterTemplate : MonoBehaviour
 
     //Refence to HP bar such that it can update whilst player health decreases
     public Image hpBar;
-
-
-
-
-
-
-
 
     // Start is called before the first frame update
     protected virtual void Start()
@@ -117,7 +108,6 @@ public class characterTemplate : MonoBehaviour
 
     }
 
-
     //Takes in horizontal input and moves player
     protected virtual void move(float input)
     {
@@ -135,7 +125,6 @@ public class characterTemplate : MonoBehaviour
         playerRigidBody.velocity = new Vector2(input * movementSpeed, playerRigidBody.velocity.y);
         
     }
-
 
     //Makes player jump
     protected virtual void jump()
@@ -173,7 +162,6 @@ public class characterTemplate : MonoBehaviour
             grounded = false;
         }
     }
-    
 
     public virtual void attack(float amnt)
     {
@@ -205,8 +193,6 @@ public class characterTemplate : MonoBehaviour
         blocking = false;
     }
 
-
-
     public void damage(float amnt)
     {
         if (blocking)
@@ -229,17 +215,20 @@ public class characterTemplate : MonoBehaviour
     {
         hpBar.fillAmount = health / maxHealth;
     }
+
     public void resetAttack()
     {
         hitBox.SetActive(false);
         anim.SetBool("Attack_Basic", false);
         canmove = true;
     }
+
     public void startAttack()
     {
         hitBox.SetActive(true);
         anim.SetBool("Attack_Basic", true);
     }
+
 }
 
 
