@@ -26,9 +26,9 @@ public class characterTemplate : MonoBehaviour
     [SerializeField]
     float input_x;
     //Reading if player is touching ground
-    public bool grounded;
+    public bool isGrounded;
     //Blocking check
-    public bool blocking;
+    public bool isBlocking;
     //Block Damage Reduction represented as a percentage of the damage mitigated
     public float blockAmount;
     //Knock Back Resistance represented as a percentage of the knockback mitigated
@@ -86,11 +86,11 @@ public class characterTemplate : MonoBehaviour
             //move the player
             move(input_x);
         }
-        if (grounded && input_x != 0)
+        if (isGrounded && input_x != 0)
         {
             anim.SetBool("Jumping", false);
         }
-        else if (grounded)
+        else if (isGrounded)
         {
             anim.SetBool("Jumping", false);
             anim.SetBool("Moving", false);
@@ -134,13 +134,13 @@ public class characterTemplate : MonoBehaviour
  
         {
             //see if player can jump
-            if (grounded == true)
+            if (isGrounded == true)
             {
                 anim.SetBool("Jumping", true);
                 //add velocity to player based on their jumpheight
                 playerRigidBody.velocity = playerRigidBody.velocity + Vector2.up * jumpHeight;
                 //set player unable to jump
-                grounded = false;
+                isGrounded = false;
             }
         }
 
@@ -155,11 +155,11 @@ public class characterTemplate : MonoBehaviour
         //setting grounding to true or false
         if (hit.collider != null)
         {
-            grounded = true;
+            isGrounded = true;
         }
         else
         {
-            grounded = false;
+            isGrounded = false;
         }
     }
 
@@ -185,17 +185,17 @@ public class characterTemplate : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
             //Set blocking to true
-            blocking = true;
+            isBlocking = true;
             //block
             Debug.Log("BLOCK");
         }
         //Set blocking to false at the end of block
-        blocking = false;
+        isBlocking = false;
     }
 
     public void damage(float amnt)
     {
-        if (blocking)
+        if (isBlocking)
         {
             amnt *= blockAmount;
         }
@@ -204,7 +204,7 @@ public class characterTemplate : MonoBehaviour
 
     public void knockBack(float amnt)
     {
-        if (blocking)
+        if (isBlocking)
         {
             amnt *= knockbackResist;
         }
