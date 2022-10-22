@@ -1965,6 +1965,7 @@ GameObject:
   - component: {fileID: 982924677}
   - component: {fileID: 982924676}
   - component: {fileID: 982924678}
+  - component: {fileID: 982924679}
   m_Layer: 0
   m_Name: Player_1
   m_TagString: Player
@@ -2104,8 +2105,8 @@ MonoBehaviour:
   maxHealth: 0
   health: 0
   input_x: 0
-  grounded: 0
-  blocking: 0
+  isGrounded: 0
+  isBlocking: 0
   blockAmount: 0
   knockbackResist: 0
   attackPower: 0
@@ -2116,6 +2117,26 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   hpBar: {fileID: 0}
+--- !u!95 &982924679
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 982924671}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fd2561a16693433489efdbc091686b3f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1134819712
 GameObject:
   m_ObjectHideFlags: 0
