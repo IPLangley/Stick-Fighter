@@ -36,7 +36,7 @@ public class characterTemplate : MonoBehaviour
     //Strength of current attack
     public float attackPower;
     //CurrentHitbox
-    public GameObject hitBox;
+    public GameObject atkBox;
     //Animator
     public Animator anim;
     //MoveCheck
@@ -68,7 +68,7 @@ public class characterTemplate : MonoBehaviour
 
         //Should be set per character as well if we have different height characters
         groundedCheckLength = 1.3f;
-        hitBox.gameObject.SetActive(false);
+        atkBox.gameObject.SetActive(false);
 
         
     }
@@ -115,11 +115,11 @@ public class characterTemplate : MonoBehaviour
         playerRenderer.flipX = (input < 0);
         if(input <= 0)
         {
-            hitBox.GetComponent<CircleCollider2D>().offset = new Vector2(-0.09f, 0.02f);
+            atkBox.GetComponent<CircleCollider2D>().offset = new Vector2(-0.09f, 0.02f);
         }
         else
         {
-            hitBox.GetComponent<CircleCollider2D>().offset = new Vector2(0.09f, 0.02f);
+            atkBox.GetComponent<CircleCollider2D>().offset = new Vector2(0.09f, 0.02f);
         }
         //Move player respective to input by movement speed
         playerRigidBody.velocity = new Vector2(input * movementSpeed, playerRigidBody.velocity.y);
@@ -218,14 +218,14 @@ public class characterTemplate : MonoBehaviour
 
     public void resetAttack()
     {
-        hitBox.SetActive(false);
+        atkBox.SetActive(false);
         anim.SetBool("Attack_Basic", false);
         canmove = true;
     }
 
     public void startAttack()
     {
-        hitBox.SetActive(true);
+        atkBox.SetActive(true);
         anim.SetBool("Attack_Basic", true);
     }
 
