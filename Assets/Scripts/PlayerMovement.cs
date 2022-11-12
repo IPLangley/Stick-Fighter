@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     Rigidbody2D rb;
-    SpriteRenderer sprite;
+    Animator anim;
 
     public Vector3 boxSize; // size of ground check box
     public float maxDist; // The max distance of the ground check
@@ -21,8 +21,8 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        sprite = GetComponent<SpriteRenderer>();
         VEL_LIM_SQR = velocityLimit * velocityLimit;
+        anim = GetComponent<Animator>();
     }
 
     // FixedUpdate is called once per physics tick
@@ -34,20 +34,25 @@ public class PlayerMovement : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.D))
         {
+            AnimateRun();
             MoveRight();
         }
         if (Input.GetKey(KeyCode.A))
         {
+            AnimateRun();
             MoveLeft();
         }
         if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.A))
-#pragma warning disable CS0642 // Possible mistaken empty statement
-            ; // Do nothing due to conflicting inputs
-#pragma warning restore CS0642 // Possible mistaken empty statement
+        {
+            AnimateIdle(); // Set to idle animation due to conflicting inputs
+        }
 
         // Restore drag to player when no horizontal input is given and is on the ground
         if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D) && isGrounded())
+        {
+            AnimateIdle();
             rb.drag = velocityLimit * 0.5f;
+        }
 
         // Limit the overall velocity
         if (rb.velocity.sqrMagnitude > VEL_LIM_SQR)
@@ -59,7 +64,7 @@ public class PlayerMovement : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawCube(transform.position - transform.up*maxDist, boxSize);
     }
-    private bool isGrounded() // Checks if the attached object (player) is touching the ground.
+    private bool isGrounded() // Checks if the attached player is touching the ground. Also plays jump animation if false.
     {
         if(Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, maxDist, layerMask))
         {
@@ -68,6 +73,7 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             rb.drag = 0f;
+            AnimateJump(); // Jump animation needs to be here due to ground check condition
             return false;
         }
     }
@@ -81,7 +87,7 @@ public class PlayerMovement : MonoBehaviour
         if (transform.localScale.x > 0) // Flips the player to face other direction
             transform.localScale = new Vector3(transform.localScale.x * -1.0f, transform.localScale.y, transform.localScale.z);
         rb.drag = 0f; // Temporarily remove drag for better control
-        if (!isGrounded())
+        if (!isGrounded()) // If in the air, reduce movement acceleration
             rb.AddForce(-transform.right * moveAcceleration * 0.5f, ForceMode2D.Force);
         else
             rb.AddForce(-transform.right * moveAcceleration, ForceMode2D.Force);
@@ -91,9 +97,42 @@ public class PlayerMovement : MonoBehaviour
         if (transform.localScale.x < 0) // Flips the player to face other direction
             transform.localScale = new Vector3(transform.localScale.x * -1.0f, transform.localScale.y, transform.localScale.z);
         rb.drag = 0f; // Temporarily remove drag for better control
-        if (!isGrounded())
+        if (!isGrounded()) // If in the air, reduce movement acceleration
             rb.AddForce(transform.right * moveAcceleration * 0.5f, ForceMode2D.Force);
         else
             rb.AddForce(transform.right * moveAcceleration, ForceMode2D.Force);
+    }
+    private void AnimateJump()
+    {
+        if (!anim.GetBool("Jumping"))
+        {
+            anim.SetBool("Idle", false);
+            anim.SetBool("running", false);
+            anim.SetBool("Blocking", false);
+            anim.SetBool("Attack_Basic", false);
+            anim.SetBool("Jumping", true);
+        }
+    }
+    private void AnimateIdle()
+    {
+        if (!anim.GetBool("Idle"))
+        {
+            anim.SetBool("running", false);
+            anim.SetBool("Jumping", false);
+            anim.SetBool("Blocking", false);
+            anim.SetBool("Attack_Basic", false);
+            anim.SetBool("Idle", true);
+        }
+    }
+    private void AnimateRun()
+    {
+        if (!anim.GetBool("running"))
+        {
+            anim.SetBool("Idle", false);
+            anim.SetBool("Jumping", false);
+            anim.SetBool("Blocking", false);
+            anim.SetBool("Attack_Basic", false);
+            anim.SetBool("running", true);
+        }
     }
 }
