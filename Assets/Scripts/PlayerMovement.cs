@@ -14,12 +14,24 @@ public class PlayerMovement : MonoBehaviour
     public float moveAcceleration; // Acceleration force for horizontal movement
     public float velocityLimit;
 
+
+    public int playerSlot;
+    KeyCode leftKey;
+    KeyCode rightKey;
+    KeyCode upKey;
+
+
     private float VEL_LIM_SQR; // the square of the velocity limit
 
 
     // Start is called before the first frame update
     void Start()
     {
+        if(playerSlot == 2)
+        {
+            transform.localScale = new Vector3(transform.localScale.x * -1.0f, transform.localScale.y, transform.localScale.z);
+        }
+        setKeys(playerSlot);
         rb = GetComponent<Rigidbody2D>();
         VEL_LIM_SQR = velocityLimit * velocityLimit;
         anim = GetComponent<Animator>();
@@ -28,27 +40,27 @@ public class PlayerMovement : MonoBehaviour
     // FixedUpdate is called once per physics tick
     void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.Space) && isGrounded())
+        if (Input.GetKey(upKey) && isGrounded())
         {
             Jump();
         }
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(rightKey))
         {
             AnimateRun();
             MoveRight();
         }
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(leftKey))
         {
             AnimateRun();
             MoveLeft();
         }
-        if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.A))
+        if (Input.GetKey(leftKey) && Input.GetKey(rightKey))
         {
             AnimateIdle(); // Set to idle animation due to conflicting inputs
         }
 
         // Restore drag to player when no horizontal input is given and is on the ground
-        if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D) && isGrounded())
+        if (!Input.GetKey(leftKey) && !Input.GetKey(rightKey) && isGrounded())
         {
             AnimateIdle();
             rb.drag = velocityLimit * 0.5f;
@@ -133,6 +145,23 @@ public class PlayerMovement : MonoBehaviour
             anim.SetBool("Blocking", false);
             anim.SetBool("Attack_Basic", false);
             anim.SetBool("running", true);
+        }
+    }
+
+    void setKeys(int slot)
+    {
+        switch (slot)
+        {
+            case 1:
+                leftKey = KeyCode.A;
+                rightKey= KeyCode.D;
+                upKey = KeyCode.W;
+                break;
+            case 2:
+                leftKey = KeyCode.J;
+                rightKey = KeyCode.L;
+                upKey = KeyCode.I;
+                break;
         }
     }
 }
