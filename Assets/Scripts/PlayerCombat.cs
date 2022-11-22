@@ -6,17 +6,15 @@ using UnityEngine.UI;
 public class PlayerCombat : MonoBehaviour
 {
     //Set Key for Attack Button
-    KeyCode attack;
+    public KeyCode attack;
     //Set Key for Block Button
-    KeyCode block;
+    public KeyCode block;
     //Int to show player slot
     public int PlayerSlot;
     public GameManager gm;
  
-
     public float maxHealth;
     public float health;
-
 
     bool blocking;
     bool attacking;
@@ -27,7 +25,7 @@ public class PlayerCombat : MonoBehaviour
 
     public Image hpBar;
     public GameObject atkBox;
-    public Animator anim;
+    Animator anim;
 
 
     // Start is called before the first frame update
@@ -35,8 +33,9 @@ public class PlayerCombat : MonoBehaviour
     {
         health = maxHealth;
         //Sets the Keys for the player side
-        setKeys(PlayerSlot);
+        //setKeys(PlayerSlot);
         attackTime = 0;
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -74,12 +73,8 @@ public class PlayerCombat : MonoBehaviour
 
     }
 
-
-
-
-
     //
-    void setKeys(int slot)
+    /*void setKeys(int slot)
     {
         switch(slot)
         {
@@ -92,7 +87,7 @@ public class PlayerCombat : MonoBehaviour
                 block = KeyCode.O;
                 break;
         }
-    }
+    }*/
 
 
     //damage function

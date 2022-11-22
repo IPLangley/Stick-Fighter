@@ -14,11 +14,10 @@ public class PlayerMovement : MonoBehaviour
     public float moveAcceleration; // Acceleration force for horizontal movement
     public float velocityLimit;
 
-
     public int playerSlot;
-    KeyCode leftKey;
-    KeyCode rightKey;
-    KeyCode upKey;
+    public KeyCode leftKey;
+    public KeyCode rightKey;
+    public KeyCode upKey;
 
 
     private float VEL_LIM_SQR; // the square of the velocity limit
@@ -31,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.localScale = new Vector3(transform.localScale.x * -1.0f, transform.localScale.y, transform.localScale.z);
         }
-        setKeys(playerSlot);
+        //setKeys(playerSlot);
         rb = GetComponent<Rigidbody2D>();
         VEL_LIM_SQR = velocityLimit * velocityLimit;
         anim = GetComponent<Animator>();
@@ -148,20 +147,16 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void setKeys(int slot)
+    /*void setKeys(int slot)
     {
         switch (slot)
         {
             case 1:
-                leftKey = KeyCode.A;
-                rightKey= KeyCode.D;
-                upKey = KeyCode.W;
+                
                 break;
             case 2:
-                leftKey = KeyCode.J;
-                rightKey = KeyCode.L;
-                upKey = KeyCode.I;
+                
                 break;
         }
-    }
+    }*/
 }

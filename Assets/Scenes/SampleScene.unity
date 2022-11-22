@@ -1976,6 +1976,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc39185647005c543af40242c6bff40d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attack: 106
+  block: 107
   PlayerSlot: 2
   gm: {fileID: 1715481037}
   maxHealth: 25
@@ -1983,8 +1985,7 @@ MonoBehaviour:
   attackDmg: 5
   attackCooldown: 0.1
   hpBar: {fileID: 243430470}
-  atkBox: {fileID: 202110859}
-  anim: {fileID: 462410366}
+  atkBox: {fileID: 375780803}
 --- !u!114 &462410365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2002,10 +2003,13 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 64
-  jumpForce: 10
+  jumpForce: 10000
   moveAcceleration: 45
   velocityLimit: 15
   playerSlot: 2
+  leftKey: 111
+  rightKey: 112
+  upKey: 108
 --- !u!95 &462410366
 Animator:
   serializedVersion: 4
@@ -3832,10 +3836,13 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 64
-  jumpForce: 10
+  jumpForce: 10000
   moveAcceleration: 45
   velocityLimit: 15
   playerSlot: 1
+  leftKey: 97
+  rightKey: 115
+  upKey: 99
 --- !u!95 &982924684
 Animator:
   serializedVersion: 4
@@ -3868,6 +3875,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc39185647005c543af40242c6bff40d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attack: 120
+  block: 122
   PlayerSlot: 1
   gm: {fileID: 1715481037}
   maxHealth: 25
@@ -3876,7 +3885,6 @@ MonoBehaviour:
   attackCooldown: 0.1
   hpBar: {fileID: 594221202}
   atkBox: {fileID: 375780803}
-  anim: {fileID: 982924684}
 --- !u!1 &1054238957
 GameObject:
   m_ObjectHideFlags: 0
