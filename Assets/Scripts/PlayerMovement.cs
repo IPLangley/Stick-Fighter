@@ -26,10 +26,11 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(playerSlot == 2)
-        {
-            transform.localScale = new Vector3(transform.localScale.x * -1.0f, transform.localScale.y, transform.localScale.z);
-        }
+        // Rotate Player 2 using their transform scale
+        if (playerSlot == 2)
+            transform.localScale = new Vector3(transform.localScale.x * -1.0f, 
+                                               transform.localScale.y, 
+                                               transform.localScale.z);
         //setKeys(playerSlot);
         rb = GetComponent<Rigidbody2D>();
         VEL_LIM_SQR = velocityLimit * velocityLimit;
