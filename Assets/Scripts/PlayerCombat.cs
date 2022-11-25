@@ -25,6 +25,9 @@ public class PlayerCombat : MonoBehaviour
 
     public Image hpBar;
     public GameObject atkBox;
+    public Vector2 colliderOffset;
+    public Collider2D hitbox;
+
     Animator anim;
 
 
@@ -113,12 +116,14 @@ public class PlayerCombat : MonoBehaviour
     public void startAttack()
     {
         atkBox.SetActive(true);
+        hitbox.offset += colliderOffset;
         anim.SetBool("Attack_Basic", true);
     }
 
     public void stopAttack()
     {
         atkBox.SetActive(false);
+        hitbox.offset -= colliderOffset;
         anim.SetBool("Attack_Basic", false);
         attackTime = attackCooldown;
     }

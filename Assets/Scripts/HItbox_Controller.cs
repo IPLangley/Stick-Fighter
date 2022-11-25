@@ -9,6 +9,7 @@ public class HItbox_Controller : MonoBehaviour
     public PlayerCombat player;
     public Rigidbody2D playerRigidBody;
     float power;
+
     private void Awake()
     {
 

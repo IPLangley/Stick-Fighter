@@ -65,4 +65,16 @@ Preset:
     propertyPath: atkBox
     value: 
     objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: colliderOffset.x
+    value: 0.1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: colliderOffset.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: hitbox
+    value: 
+    objectReference: {fileID: 0}
   m_ExcludedProperties: []
