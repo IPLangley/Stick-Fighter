@@ -34,7 +34,7 @@ public class HItbox_Controller : MonoBehaviour
     private void executeAttack()
     {
         power = player.attackDmg;
-        player.damage(power);
+        player.Damage(power);
         Debug.Log("damaged");
     }
 

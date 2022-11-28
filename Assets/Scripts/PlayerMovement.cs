@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    // Grabbed components
     Rigidbody2D rb;
     Animator anim;
 
+    // Movement-related
     public Vector3 boxSize; // size of ground check box
     public float maxDist; // The max distance of the ground check
     public LayerMask layerMask; // The layer that ground check takes place on
@@ -14,11 +16,11 @@ public class PlayerMovement : MonoBehaviour
     public float moveAcceleration; // Acceleration force for horizontal movement
     public float velocityLimit;
 
+    // Input-related
     public int playerSlot;
     public KeyCode leftKey;
     public KeyCode rightKey;
     public KeyCode upKey;
-
 
     private float VEL_LIM_SQR; // the square of the velocity limit
 
@@ -26,12 +28,6 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Rotate Player 2 using their transform scale
-        if (playerSlot == 2)
-            transform.localScale = new Vector3(transform.localScale.x * -1.0f, 
-                                               transform.localScale.y, 
-                                               transform.localScale.z);
-        //setKeys(playerSlot);
         rb = GetComponent<Rigidbody2D>();
         VEL_LIM_SQR = velocityLimit * velocityLimit;
         anim = GetComponent<Animator>();

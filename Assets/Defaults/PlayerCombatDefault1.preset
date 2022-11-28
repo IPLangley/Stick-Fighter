@@ -26,12 +26,16 @@ Preset:
     value: 
     objectReference: {fileID: 0}
   - target: {fileID: 0}
-    propertyPath: attack
-    value: 120
+    propertyPath: punchKey
+    value: 122
     objectReference: {fileID: 0}
   - target: {fileID: 0}
-    propertyPath: block
-    value: 122
+    propertyPath: blockKey
+    value: 99
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: kickKey
+    value: 120
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: PlayerSlot
@@ -58,11 +62,19 @@ Preset:
     value: 0.1
     objectReference: {fileID: 0}
   - target: {fileID: 0}
+    propertyPath: blockReduction
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
     propertyPath: hpBar
     value: 
     objectReference: {fileID: 0}
   - target: {fileID: 0}
-    propertyPath: atkBox
+    propertyPath: punchBox
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: kickBox
     value: 
     objectReference: {fileID: 0}
   - target: {fileID: 0}
@@ -74,7 +86,11 @@ Preset:
     value: 0
     objectReference: {fileID: 0}
   - target: {fileID: 0}
-    propertyPath: hitbox
+    propertyPath: punchCollider
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: kickCollider
     value: 
     objectReference: {fileID: 0}
   m_ExcludedProperties: []
