@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 29db20faf7e12364ba9dd0be1d145f20
+guid: 372c194526a4ab14ebfe55b651f2cf2e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -101,18 +101,6 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -131,8 +119,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3869e491c780485438230c4d1ae4cbb4
-      internalID: 622090061
+      spriteID: f694ed6ab4ef9ed4987edd79f1296a93
+      internalID: 932606034
       vertices: []
       indices: 
       edges: []
@@ -152,8 +140,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 872d955da20f9f04f8a298c9128cac26
-      internalID: -377909536
+      spriteID: 732c3567af444004d86222ab7d841beb
+      internalID: 1412409319
       vertices: []
       indices: 
       edges: []
@@ -173,8 +161,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 82197db932ed9594d964b17ae8ba23ee
-      internalID: -715053820
+      spriteID: 16871d249abf418469da484eebab9f91
+      internalID: 1940740676
       vertices: []
       indices: 
       edges: []
@@ -194,8 +182,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: be1c1d45ea110a24393a8d2ac9b0bf2a
-      internalID: -1974524966
+      spriteID: 48ed668e70b81284dbed289098c18645
+      internalID: 24832427
       vertices: []
       indices: 
       edges: []
@@ -215,8 +203,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b5d22facbd2b3204d87dcb9ab4198bba
-      internalID: 2123902702
+      spriteID: 2607e985d953c8f40962607d11d35389
+      internalID: 1946745022
       vertices: []
       indices: 
       edges: []
@@ -236,8 +224,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 18101dfeb97a99442bd5520f0b368344
-      internalID: -1509227380
+      spriteID: 5e5fc525d16fedc4a9abf41c1acfc93d
+      internalID: -135836353
       vertices: []
       indices: 
       edges: []
@@ -257,8 +245,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2811a822c5f41734f879f1f9ed805999
-      internalID: 994005971
+      spriteID: 7731f30f633b2374a92b9aaeaac5ba21
+      internalID: 1461702285
       vertices: []
       indices: 
       edges: []
@@ -278,8 +266,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f9320c2b3247f2b4fbfb58e6b7fa791f
-      internalID: -1733262344
+      spriteID: d60bdbecc314c2e4db518881eeddde47
+      internalID: -1446448654
       vertices: []
       indices: 
       edges: []
@@ -299,8 +287,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d23992a150ddf1a49b80a7b1830ee022
-      internalID: -1145278439
+      spriteID: 06f554561b99c634ab0548b646762a9e
+      internalID: -1807043553
       vertices: []
       indices: 
       edges: []
@@ -320,14 +308,56 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f4f1997b76b29f349bf441a981be43ac
-      internalID: -42193199
+      spriteID: 6998da2a0e8fcfa428d88bdaeef0eeab
+      internalID: 888469882
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
       name: StickFighterSprites_10
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 453
+        width: 17
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: febf3c56b3b855143a5040cbbdb5794c
+      internalID: 1830451716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StickFighterSprites_11
+      rect:
+        serializedVersion: 2
+        x: 293
+        y: 453
+        width: 17
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 027ef6caf05727b4699d7f3840285cb7
+      internalID: 389490421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StickFighterSprites_12
       rect:
         serializedVersion: 2
         x: 2
@@ -341,14 +371,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6943a4b3005d03740a9a836b8258c6fd
-      internalID: -642106042
+      spriteID: b3650f4821086aa40825de97b8941f91
+      internalID: -321271298
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: StickFighterSprites_11
+      name: StickFighterSprites_13
       rect:
         serializedVersion: 2
         x: 18
@@ -362,14 +392,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 08964fdea5573094c8af0f73a10b23cf
-      internalID: 1567878940
+      spriteID: 586960c1d769d8b4b805da542ac822a7
+      internalID: 2056366329
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: StickFighterSprites_12
+      name: StickFighterSprites_14
       rect:
         serializedVersion: 2
         x: 34
@@ -383,14 +413,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2bff207deae8d8944bee8e64e0c7fa2e
-      internalID: 1666197614
+      spriteID: 8b74402f984f09d41bc8c756f2c1d784
+      internalID: 842029715
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: StickFighterSprites_13
+      name: StickFighterSprites_15
       rect:
         serializedVersion: 2
         x: 48
@@ -404,14 +434,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6c950008e80dc0841a02b9d5f09295e4
-      internalID: -891346910
+      spriteID: 9ae5f7b6b7591934db68754f5c2474f3
+      internalID: -1450994326
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: StickFighterSprites_14
+      name: StickFighterSprites_16
       rect:
         serializedVersion: 2
         x: 69
@@ -425,14 +455,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 59f2ddfc07fa6e44b891bb4bc4e0a0f6
-      internalID: -314526494
+      spriteID: cec8a1c7bc6d25d4bb18ee51f2b1f8a4
+      internalID: 325259807
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: StickFighterSprites_15
+      name: StickFighterSprites_17
       rect:
         serializedVersion: 2
         x: 96
@@ -446,14 +476,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 038f2175b35c14a4c959427a8f50e99e
-      internalID: 694123727
+      spriteID: e5fe9b76aa93bb140a8a582ad20eb0e4
+      internalID: 197823745
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: StickFighterSprites_16
+      name: StickFighterSprites_18
       rect:
         serializedVersion: 2
         x: 70
@@ -467,8 +497,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cc14de79c90d74749abbf0c9cf8d6f28
-      internalID: -2029393111
+      spriteID: 7a2f0b5b2ba94044eb18628266c85a83
+      internalID: 435405289
       vertices: []
       indices: 
       edges: []
@@ -484,23 +514,25 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      StickFighterSprites_2: -715053820
-      StickFighterSprites_9: -42193199
-      StickFighterSprites_16: -2029393111
-      StickFighterSprites_1: -377909536
-      StickFighterSprites_6: 994005971
-      StickFighterSprites_0: 622090061
-      StickFighterSprites_5: -1509227380
-      StickFighterSprites_10: -642106042
-      StickFighterSprites_13: -891346910
-      StickFighterSprites_15: 694123727
-      StickFighterSprites_11: 1567878940
-      StickFighterSprites_4: 2123902702
-      StickFighterSprites_14: -314526494
-      StickFighterSprites_8: -1145278439
-      StickFighterSprites_12: 1666197614
-      StickFighterSprites_3: -1974524966
-      StickFighterSprites_7: -1733262344
+      StickFighterSprites_2: 1940740676
+      StickFighterSprites_9: 888469882
+      StickFighterSprites_16: 325259807
+      StickFighterSprites_1: 1412409319
+      StickFighterSprites_6: 1461702285
+      StickFighterSprites_0: 932606034
+      StickFighterSprites_5: -135836353
+      StickFighterSprites_10: 1830451716
+      StickFighterSprites_13: 2056366329
+      StickFighterSprites_15: -1450994326
+      StickFighterSprites_11: 389490421
+      StickFighterSprites_18: 435405289
+      StickFighterSprites_4: 1946745022
+      StickFighterSprites_14: 842029715
+      StickFighterSprites_8: -1807043553
+      StickFighterSprites_12: -321271298
+      StickFighterSprites_3: 24832427
+      StickFighterSprites_7: -1446448654
+      StickFighterSprites_17: 197823745
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
