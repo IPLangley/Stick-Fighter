@@ -8,6 +8,9 @@ public class HItbox_Controller : MonoBehaviour
     // Start is called before the first frame update
     public PlayerCombat player;
     public Rigidbody2D playerRigidBody;
+    public GameObject hitMark;
+    public float hitmarkDecay;
+    private PlayerCombat otherPlayer;
     float power;
 
     private void Awake()
@@ -15,29 +18,30 @@ public class HItbox_Controller : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D otherCollider)
     {
-        /*if (collision.gameObject.CompareTag("Player"))
+        if (otherCollider.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Foo");
-            collision.gameObject.GetComponent<characterTemplate>().damage(player.attackPower);
-
-        }*/
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            player = collision.gameObject.GetComponent<PlayerCombat>();
+            GameObject lastHitMark;
+            Vector3 collisionPoint = otherCollider.ClosestPoint(transform.position);
+            otherPlayer = otherCollider.gameObject.GetComponent<PlayerCombat>();
             executeAttack();
+            lastHitMark = Instantiate(hitMark, collisionPoint, new Quaternion());
+            Destroy(lastHitMark, hitmarkDecay);
         }
     }
-
 
     private void executeAttack()
     {
         power = player.attackDmg;
-        player.Damage(power);
+        otherPlayer.Damage(power);
         Debug.Log("damaged");
     }
 
+    public void DeleteFeedback()
+    {
+
+    }
 
 
 }

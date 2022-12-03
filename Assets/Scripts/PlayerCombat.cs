@@ -115,14 +115,14 @@ public class PlayerCombat : MonoBehaviour
     {
         kickBox.SetActive(true);
         kickCollider.offset += colliderOffset;
-        //anim.SetBool(,true);
+        AnimateKick();
     }
 
     public void StopKick()
     {
         kickBox.SetActive(false);
         kickCollider.offset -= colliderOffset;
-        //anim.SetBool(, false);
+        anim.SetBool("Kicking", false);
         attackTime = attackCooldown;
     }
 
@@ -136,6 +136,19 @@ public class PlayerCombat : MonoBehaviour
     {
         anim.SetBool("Blocking", false);
         blocking = false;
+    }
+
+    public void AnimateKick()
+    {
+        if (!anim.GetBool("Kicking"))
+        {
+            anim.SetBool("Idle", false);
+            anim.SetBool("running", false);
+            anim.SetBool("Blocking", false);
+            anim.SetBool("Attack_Basic", false);
+            anim.SetBool("Jumping", false);
+            anim.SetBool("Kicking", true);
+        }
     }
 }
 
