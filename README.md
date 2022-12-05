@@ -1,12 +1,7 @@
 # Watch Your Back
 
 Contributors:
-Luis Garcia
-Ian Langley
-Tristan Meye
-rHector Najera
-Jacob Ramsey
-Arius Ulibarri
+Luis Garcia, Ian Langley, Tristan Meyer, Hector Najera, Jacob Ramsey, and Arius Ulibarri
 
 This is a student group project for our game design class at California State University San Bernardino.
 Heavily inspired by Stick Fight: The Game and the Street Fighter franchise. As of the end of the class and this writing,
