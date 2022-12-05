@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    // Grabbed components
     Rigidbody2D rb;
     Animator anim;
 
+    // Movement-related
     public Vector3 boxSize; // size of ground check box
     public float maxDist; // The max distance of the ground check
     public LayerMask layerMask; // The layer that ground check takes place on
@@ -14,11 +16,11 @@ public class PlayerMovement : MonoBehaviour
     public float moveAcceleration; // Acceleration force for horizontal movement
     public float velocityLimit;
 
+    // Input-related
     public int playerSlot;
     public KeyCode leftKey;
     public KeyCode rightKey;
     public KeyCode upKey;
-
 
     private float VEL_LIM_SQR; // the square of the velocity limit
 
@@ -26,12 +28,6 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Rotate Player 2 using their transform scale
-        if (playerSlot == 2)
-            transform.localScale = new Vector3(transform.localScale.x * -1.0f, 
-                                               transform.localScale.y, 
-                                               transform.localScale.z);
-        //setKeys(playerSlot);
         rb = GetComponent<Rigidbody2D>();
         VEL_LIM_SQR = velocityLimit * velocityLimit;
         anim = GetComponent<Animator>();
@@ -42,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKey(upKey) && isGrounded())
         {
+            
             Jump();
         }
         if (Input.GetKey(rightKey))
@@ -64,6 +61,9 @@ public class PlayerMovement : MonoBehaviour
         {
             AnimateIdle();
             rb.drag = velocityLimit * 0.5f;
+        } else if (!isGrounded() && !anim.GetBool("Kicking") && !anim.GetBool("Attack_Basic"))
+        {
+            AnimateJump();
         }
 
         // Limit the overall velocity
@@ -85,7 +85,6 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             rb.drag = 0f;
-            AnimateJump(); // Jump animation needs to be here due to ground check condition
             return false;
         }
     }
@@ -123,6 +122,7 @@ public class PlayerMovement : MonoBehaviour
             anim.SetBool("Blocking", false);
             anim.SetBool("Attack_Basic", false);
             anim.SetBool("Jumping", true);
+            anim.SetBool("Kicking", false);
         }
     }
     private void AnimateIdle()
@@ -134,6 +134,7 @@ public class PlayerMovement : MonoBehaviour
             anim.SetBool("Blocking", false);
             anim.SetBool("Attack_Basic", false);
             anim.SetBool("Idle", true);
+            anim.SetBool("Kicking", false);
         }
     }
     private void AnimateRun()
@@ -145,19 +146,8 @@ public class PlayerMovement : MonoBehaviour
             anim.SetBool("Blocking", false);
             anim.SetBool("Attack_Basic", false);
             anim.SetBool("running", true);
+            anim.SetBool("Kicking", false);
         }
     }
 
-    /*void setKeys(int slot)
-    {
-        switch (slot)
-        {
-            case 1:
-                
-                break;
-            case 2:
-                
-                break;
-        }
-    }*/
 }

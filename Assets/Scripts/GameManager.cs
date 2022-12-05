@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,9 +13,9 @@ public class GameManager : MonoBehaviour
 
     public Text timeText;
     public Text loserText;
-    public float timeRemaining;
-    float timeLimit = 150;
-    public bool timerIsRunning = false;
+    private float timeRemaining;
+    public float timeLimit = 150;
+    private bool timerIsRunning = false;
     void Start()
     {
         GameOverUI.SetActive(false);
@@ -37,6 +38,19 @@ public class GameManager : MonoBehaviour
                 Debug.Log("Time has run out!");
                 timeRemaining = 0;
                 timerIsRunning = false;
+            }
+        }
+        if (GameOverUI.activeSelf)
+        {
+            if (Input.GetKeyDown(KeyCode.Space) && !Input.GetKeyDown(KeyCode.Escape))
+            {
+                Rematch();
+                Time.timeScale = 1;
+            }
+            if (Input.GetKeyDown(KeyCode.Escape) && !Input.GetKeyDown(KeyCode.Space))
+            {
+                GoToMainMenu();
+                Time.timeScale = 1;
             }
         }
     }
@@ -62,6 +76,15 @@ public class GameManager : MonoBehaviour
                 loserText.text = "Player 2 Loses";
                 break;
         }
+    }
 
+    private void Rematch()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    private void GoToMainMenu()
+    {
+        SceneManager.LoadScene("StartMenu");
     }
 }

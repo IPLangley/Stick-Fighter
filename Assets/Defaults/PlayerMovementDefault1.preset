@@ -67,10 +67,10 @@ Preset:
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: rightKey
-    value: 115
+    value: 100
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: upKey
-    value: 99
+    value: 119
     objectReference: {fileID: 0}
   m_ExcludedProperties: []

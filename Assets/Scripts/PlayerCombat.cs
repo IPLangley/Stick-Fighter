@@ -5,11 +5,9 @@ using UnityEngine.UI;
 
 public class PlayerCombat : MonoBehaviour
 {
-    //Set Key for Attack Button
-    public KeyCode attack;
-    //Set Key for Block Button
-    public KeyCode block;
-    //Int to show player slot
+    public KeyCode punchKey;
+    public KeyCode blockKey;
+    public KeyCode kickKey;
     public int PlayerSlot;
     public GameManager gm;
  
@@ -21,12 +19,14 @@ public class PlayerCombat : MonoBehaviour
     public float attackDmg;
     float attackTime;
     public float attackCooldown;
-    float blockReduction;
+    public float blockReduction;
 
     public Image hpBar;
-    public GameObject atkBox;
+    public GameObject punchBox;
+    public GameObject kickBox;
     public Vector2 colliderOffset;
-    public Collider2D hitbox;
+    public Collider2D punchCollider;
+    public Collider2D kickCollider;
 
     Animator anim;
 
@@ -44,28 +44,29 @@ public class PlayerCombat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(attack) && attackTime <= 0)
+        if (Input.GetKeyDown(punchKey) && attackTime <= 0)
         {
             //activate hitbox and start animation
-            startAttack();
-            Debug.Log("Attacked!");
-            Invoke("stopAttack", 0.7f);
+            StartPunch();
+            Debug.Log("Punched!");
+            Invoke(nameof(StopPunch), 0.7f);
 
         }
-
-        if (Input.GetKeyDown(block))
+        if (Input.GetKeyDown(kickKey) && attackTime <= 0)
+        {
+            StartKick();
+            Debug.Log("Kicked!");
+            Invoke(nameof(StopKick), 0.7f);
+        }
+        if (Input.GetKeyDown(blockKey))
         {
             Debug.Log("Blocked!");
-            startBlock();
+            StartBlock();
         }
-        if (Input.GetKey(block))
-        {
-            blocking = true;
-        }
-        if (Input.GetKeyUp(block))
+        if (Input.GetKeyUp(blockKey))
         {
             Debug.Log("KeyReleased");
-            stopBlock();
+            StopBlock();
         }
 
         if (attackTime > 0)
@@ -73,28 +74,10 @@ public class PlayerCombat : MonoBehaviour
             attackTime -= Time.deltaTime;
         }
         hpBar.fillAmount = health / maxHealth;
-
     }
 
-    //
-    /*void setKeys(int slot)
-    {
-        switch(slot)
-        {
-            case 1:
-                attack = KeyCode.E;
-                block = KeyCode.Q;
-                break;
-            case 2:
-                attack = KeyCode.U;
-                block = KeyCode.O;
-                break;
-        }
-    }*/
-
-
     //damage function
-    public void damage(float amnt)
+    public void Damage(float amnt)
     {
         if (blocking)
         {
@@ -107,36 +90,64 @@ public class PlayerCombat : MonoBehaviour
         }
     }
 
-    public void hpUpdate()
+    public void HpUpdate()
     {
         hpBar.fillAmount = health / maxHealth;
     }
 
-
-    public void startAttack()
+    public void StartPunch()
     {
-        atkBox.SetActive(true);
-        hitbox.offset += colliderOffset;
+        punchBox.SetActive(true);
+        punchCollider.offset += colliderOffset;
         anim.SetBool("Attack_Basic", true);
     }
 
-    public void stopAttack()
+    public void StopPunch()
     {
-        atkBox.SetActive(false);
-        hitbox.offset -= colliderOffset;
+        punchBox.SetActive(false);
+        punchCollider.offset -= colliderOffset;
         anim.SetBool("Attack_Basic", false);
         attackTime = attackCooldown;
     }
 
-    public void startBlock()
+    public void StartKick()
     {
-        anim.SetBool("Blocking", true);
+        kickBox.SetActive(true);
+        kickCollider.offset += colliderOffset;
+        AnimateKick();
     }
 
-    public void stopBlock()
+    public void StopKick()
+    {
+        kickBox.SetActive(false);
+        kickCollider.offset -= colliderOffset;
+        anim.SetBool("Kicking", false);
+        attackTime = attackCooldown;
+    }
+
+    public void StartBlock()
+    {
+        anim.SetBool("Blocking", true);
+        blocking = true;
+    }
+
+    public void StopBlock()
     {
         anim.SetBool("Blocking", false);
         blocking = false;
+    }
+
+    public void AnimateKick()
+    {
+        if (!anim.GetBool("Kicking"))
+        {
+            anim.SetBool("Idle", false);
+            anim.SetBool("running", false);
+            anim.SetBool("Blocking", false);
+            anim.SetBool("Attack_Basic", false);
+            anim.SetBool("Jumping", false);
+            anim.SetBool("Kicking", true);
+        }
     }
 }
 
