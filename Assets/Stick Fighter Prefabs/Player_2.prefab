@@ -268,7 +268,7 @@ MonoBehaviour:
   health: 0
   attackDmg: 5
   attackCooldown: 0.1
-  blockReduction: 0
+  blockReduction: 0.5
   hpBar: {fileID: 0}
   punchBox: {fileID: 2495846252041507344}
   kickBox: {fileID: 2495846251387595249}

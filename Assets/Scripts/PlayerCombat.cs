@@ -74,7 +74,6 @@ public class PlayerCombat : MonoBehaviour
             attackTime -= Time.deltaTime;
         }
         hpBar.fillAmount = health / maxHealth;
-
     }
 
     //damage function
