@@ -3,8 +3,8 @@
 Contributors:
 Luis Garcia
 Ian Langley
-Tristan Meyer
-Hector Najera
+Tristan Meye
+rHector Najera
 Jacob Ramsey
 Arius Ulibarri
 
